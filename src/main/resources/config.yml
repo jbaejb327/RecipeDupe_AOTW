@@ -16,17 +16,18 @@
 # ""    """   """""     """""   """"""""  ## """      """""                      
 #                                         ##                                                                                                                   
 #                                                                                
-# mmmmm                                                        mmmmm             
-# ##"""##                                              mm     #""""##m           
-# ##    ##  ##    ##  ##m###m    m####m                ##          m##           
-# ##    ##  ##    ##  ##"  "##  ##mmmm##                        #####            
-# ##    ##  ##    ##  ##    ##  ##""""""                         "##           
-# ##mmm##   ##mmm###  ###mm##"  "##mmmm#               ##     #mmmm##"           
-# """""      """" ""  ## """      """""                ""      """""             
+# mmmmm                                                       mmmmm             
+# ##"""##                                              mm    #""""##m           
+# ##    ##  ##    ##  ##m###m    m####m                ##         m##           
+# ##    ##  ##    ##  ##"  "##  ##mmmm##                       #####            
+# ##    ##  ##    ##  ##    ##  ##""""""                          "##           
+# ##mmm##   ##mmm###  ###mm##"  "##mmmm#               ##    #mmmm##"           
+# """""      """" ""  ## """      """""                ""     """""             
 #                     ##                                                         
 # Made by jbaejb327 for aotwmc.org and 8p8t.org with love.                                                                                
 
 success-rate: 100.0
+click-window-ms: 600
 
 # Past this point is my copyright license.
 

@@ -33,7 +33,7 @@
     </repositories>
 
     <dependencies>
-        <!-- Folia runtime (provided by server) -->
+
         <dependency>
             <groupId>dev.folia</groupId>
             <artifactId>folia-api</artifactId>
@@ -42,15 +42,7 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Paper API for compile-time types -->
-        <dependency>
-            <groupId>io.papermc.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>1.21.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
 
-        <!-- Adventure API -->
         <dependency>
             <groupId>net.kyori</groupId>
             <artifactId>adventure-api</artifactId>

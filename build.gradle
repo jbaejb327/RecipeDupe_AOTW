@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.recipedupe'
-version = 'b1.2'
+version = 'b1.3'
 
 java {
     toolchain {
@@ -19,7 +19,6 @@ repositories {
 }
 
 dependencies {
-    // Paper API for Bukkit types at compile time
     compileOnly 'io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT'
 
 

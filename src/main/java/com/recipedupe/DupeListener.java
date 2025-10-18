@@ -1,6 +1,7 @@
 package com.recipedupe;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -47,7 +48,7 @@ public class DupeListener implements Listener {
         if (lastInventoryClick.containsKey(playerUuid)) {
             long timeSinceClick = System.currentTimeMillis() - lastInventoryClick.get(playerUuid);
 
-            if (timeSinceClick < 200) {
+            if (timeSinceClick < plugin.getClickWindowMs()) {
                 double success = plugin.getSuccessRate();
                 if (success < 100.0) {
                     Random r = new Random();
@@ -60,16 +61,30 @@ public class DupeListener implements Listener {
                 ItemStack itemStack = event.getItem().getItemStack();
                 int originalAmount = itemStack.getAmount();
                 int maxStackSize = itemStack.getMaxStackSize();
+
+                int newAmount;
                 if (maxStackSize == 1) {
-                    if (originalAmount == 1) {
-                        itemStack.setAmount(2);
-                    }
+                    newAmount = (originalAmount >= 1) ? Math.min(2, originalAmount * 2) : originalAmount;
                 } else {
                     if (originalAmount == 64) {
-                        itemStack.setAmount(127); // so it doesn't crash the user's game and the server 
-                        // due to integer overflow cuz stacks being controlled by a "byte" type (-128 to 127)
+                        newAmount = 127;
                     } else {
-                        itemStack.setAmount(originalAmount * 2);
+                        newAmount = originalAmount * 2;
+                    }
+                }
+
+                event.setCancelled(true);
+                if (event.getItem() != null && !event.getItem().isDead()) {
+                    event.getItem().remove();
+                }
+
+                ItemStack giveStack = itemStack.clone();
+                giveStack.setAmount(newAmount);
+
+                Map<Integer, ItemStack> leftovers = player.getInventory().addItem(giveStack);
+                if (leftovers != null && !leftovers.isEmpty()) {
+                    for (ItemStack leftover : leftovers.values()) {
+                        player.getWorld().dropItemNaturally(player.getLocation(), leftover);
                     }
                 }
 
