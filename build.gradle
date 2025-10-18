@@ -1,0 +1,54 @@
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.recipedupe'
+version = 'b1.2'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.papermc.io/repository/maven-public/' }
+    maven { url 'https://repo.papermc.io/repository/maven-snapshots/' }
+}
+
+dependencies {
+    // Paper API for Bukkit types at compile time
+    compileOnly 'io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT'
+
+
+    runtimeOnly 'dev.folia:folia-api:1.21.8-R0.1-20250930.141227-5@pom'
+
+
+    compileOnly 'net.kyori:adventure-api:4.11.0'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+processResources {
+    filesMatching('**/*') {
+        expand(project.properties)
+    }
+}
+
+shadowJar {
+    archiveBaseName.set('RecipeDupe')
+    archiveClassifier.set('')
+    archiveVersion.set(project.version.toString())
+}
+
+jar {
+    enabled = false
+}
+
+tasks.register('buildPlugin') {
+    dependsOn tasks.shadowJar
+}

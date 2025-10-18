@@ -1,0 +1,13 @@
+name: RecipeDupe
+version: 1.0
+main: com.recipedupe.RecipeDupe
+api-version: 1.21
+author: jbaejb327
+description: A simple dupe inspired by HazeyNetwork's original plugin.
+
+commands:
+  recipedupe:
+    description: Toggle or reload the RecipeDupe plugin
+    usage: /<command> <toggle|reload>
+    permission: recipedupe.admin
+    permission-message: You don't have permission to use this command.
