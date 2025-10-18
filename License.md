@@ -1,0 +1,20 @@
+# CV Open License (v1.0)
+## Copyright (c) 2025 [CivicVox/jbaejb327]
+
+Permission is hereby granted to any person obtaining a copy of this software and associated documentation files (the “Software”) to use, modify, and distribute the Software, including modified versions, provided that the following conditions are met:
+
+Attribution: You must give credit to the original author by name in any public distribution or derivative work.
+
+Source Availability: Any distributed copy or derivative of this Software must include full, human-readable source code. Obfuscation or encryption of the source code is not permitted.
+
+Integrity of Credit: You may not misrepresent the origin of this Software. Modified versions must be clearly marked as such.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+By copying, modifying, or distributing the Software, you agree to these terms.
