@@ -1,10 +1,10 @@
 name: RecipeDupe
-version: 1.1
+version: 1.0
 main: com.recipedupe.RecipeDupe
 api-version: 1.21
 author: jbaejb327/CivicVox
 description: A simple dupe inspired by HazeyNetwork's original plugin.
-folia: true
+folia-supported: true
 
 commands:
   recipedupe:
