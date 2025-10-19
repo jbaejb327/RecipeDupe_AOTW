@@ -98,9 +98,6 @@ public class DupeListener implements Listener {
                     }
 
                     remaining -= take;
-                    // If inventory is full and nothing was accepted, avoid busy-loop by dropping remainder
-                    // (addItem returns the entire chunk as leftover in that case and we already dropped it)
-                    // So continue will eventually terminate because we subtract 'take' each loop.
                 }
 
                 lastInventoryClick.remove(playerUuid);
