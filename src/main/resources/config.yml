@@ -10,7 +10,7 @@
 # mmmmmm                           ##                                            
 # ##""""##                         ""                                            
 # ##    ##   m####m    m#####m   ####     ##m###m    m####m                      
-# #######   ##mmmm##  ##"    "     ##     ##"  "##  ##mmmm##                     
+# #######   ##    ##  ##"    "     ##     ##"  "##  ##    ##                     
 # ##  "##m  ##""""""  ##           ##     ##    ##  ##""""""                     
 # ##    ##  "##mmmm#  "##mmmm#  mmm##mmm  ###mm##"  "##mmmm#                     
 # ""    """   """""     """""   """"""""  ## """      """""                      
@@ -19,7 +19,7 @@
 # mmmmm                                                       mmmmm             
 # ##"""##                                              mm    #""""##m           
 # ##    ##  ##    ##  ##m###m    m####m                ##         m##           
-# ##    ##  ##    ##  ##"  "##  ##mmmm##                       #####            
+# ##    ##  ##    ##  ##"  "##  ##    ##                       #####            
 # ##    ##  ##    ##  ##    ##  ##""""""                          "##           
 # ##mmm##   ##mmm###  ###mm##"  "##mmmm#               ##    #mmmm##"           
 # """""      """" ""  ## """      """""                ""     """""             
@@ -29,7 +29,9 @@
 success-rate: 100.0
 click-window-ms: 600
 dupe-amount: 2 # the number to times/put to the power by.
-mode: multiple
+mode: multiple # "multiple" or "exponent"
+# multiple: original amount * dupe-amount (like 327*2 = 654)
+# exponent: original amount ^ dupe-amount (like 327^2= 106929)
 
 # Past this point is my copyright license.
 

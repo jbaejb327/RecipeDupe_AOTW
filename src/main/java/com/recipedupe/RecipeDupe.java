@@ -8,7 +8,7 @@ public final class RecipeDupe extends JavaPlugin {
     private double successRate = 100.0;
     private int clickWindowMs = 600;
     private int dupeAmount = 2;
-    private String mode = "multiple"; // allowed: "multiple" or "exponent"
+    private String mode = "multiple";
 
     @Override
     public void onEnable() {
@@ -57,6 +57,12 @@ public final class RecipeDupe extends JavaPlugin {
 
     public int getDupeAmount() {
         return dupeAmount;
+    }
+
+    public boolean setDupeAmount(int amount) {
+        if (amount < 1) return false;
+        this.dupeAmount = amount;
+        return true;
     }
 
     public String getMode() {
