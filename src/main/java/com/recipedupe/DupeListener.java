@@ -62,30 +62,45 @@ public class DupeListener implements Listener {
                 int originalAmount = itemStack.getAmount();
                 int maxStackSize = itemStack.getMaxStackSize();
 
-                int newAmount;
-                if (maxStackSize == 1) {
-                    newAmount = (originalAmount >= 1) ? Math.min(2, originalAmount * 2) : originalAmount;
+                int dupeAmount = Math.max(1, plugin.getDupeAmount());
+                String mode = plugin.getMode();
+
+                long totalAmountLong;
+                if (mode.equals("exponent")) {
+                    double pow = Math.pow((double) originalAmount, (double) dupeAmount);
+                    totalAmountLong = (long) Math.max(1.0, Math.floor(pow));
                 } else {
-                    if (originalAmount == 64) {
-                        newAmount = 127;
-                    } else {
-                        newAmount = originalAmount * 2;
-                    }
+                    totalAmountLong = (long) originalAmount * (long) dupeAmount;
                 }
 
+                long SAFETY_MAX = 1_000L;
+                if (totalAmountLong > SAFETY_MAX) totalAmountLong = SAFETY_MAX;
+
+                int perStackCap = Math.min(64, maxStackSize);
+
                 event.setCancelled(true);
-                if (event.getItem() != null && !event.getItem().isDead()) {
+                if (!event.getItem().isDead()) {
                     event.getItem().remove();
                 }
 
-                ItemStack giveStack = itemStack.clone();
-                giveStack.setAmount(newAmount);
+                long remaining = totalAmountLong;
+                while (remaining > 0) {
+                    int take = (int) Math.min(perStackCap, remaining);
+                    ItemStack chunk = itemStack.clone();
+                    chunk.setAmount(take);
 
-                Map<Integer, ItemStack> leftovers = player.getInventory().addItem(giveStack);
-                if (leftovers != null && !leftovers.isEmpty()) {
-                    for (ItemStack leftover : leftovers.values()) {
-                        player.getWorld().dropItemNaturally(player.getLocation(), leftover);
+                    Map<Integer, ItemStack> leftovers = player.getInventory().addItem(chunk);
+                    if (!leftovers.isEmpty()) {
+                        // If any portion couldn't be added to inventory, drop it in the world
+                        for (ItemStack leftover : leftovers.values()) {
+                            player.getWorld().dropItemNaturally(player.getLocation(), leftover);
+                        }
                     }
+
+                    remaining -= take;
+                    // If inventory is full and nothing was accepted, avoid busy-loop by dropping remainder
+                    // (addItem returns the entire chunk as leftover in that case and we already dropped it)
+                    // So continue will eventually terminate because we subtract 'take' each loop.
                 }
 
                 lastInventoryClick.remove(playerUuid);

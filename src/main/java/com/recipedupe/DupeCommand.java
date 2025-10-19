@@ -17,8 +17,8 @@ public class DupeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (args.length != 1) {
-            sender.sendMessage(Component.text("Usage: /recipedupe <toggle|reload>").color(NamedTextColor.RED));
+        if (args.length < 1) {
+            sender.sendMessage(Component.text("Usage: /recipedupe <toggle|reload|mode>").color(NamedTextColor.RED));
             return true;
         }
 
@@ -35,7 +35,25 @@ public class DupeCommand implements CommandExecutor {
             return true;
         }
 
-        sender.sendMessage(Component.text("Unknown subcommand. Usage: /recipedupe <toggle|reload>").color(NamedTextColor.RED));
+        if (args[0].equalsIgnoreCase("mode")) {
+            if (args.length == 1) {
+                sender.sendMessage(Component.text("Mode: " + plugin.getMode()).color(NamedTextColor.GREEN));
+                return true;
+            } else if (args.length == 2) {
+                String requested = args[1].toLowerCase();
+                if (plugin.setMode(requested)) {
+                    // Also persist to config
+                    plugin.getConfig().set("mode", requested);
+                    plugin.saveConfig();
+                    sender.sendMessage(Component.text("Mode set to: " + requested).color(NamedTextColor.GREEN));
+                } else {
+                    sender.sendMessage(Component.text("Invalid mode. Use 'multiple' or 'exponent'.").color(NamedTextColor.RED));
+                }
+                return true;
+            }
+        }
+
+        sender.sendMessage(Component.text("Unknown subcommand. Usage: /recipedupe <toggle|reload|mode>").color(NamedTextColor.RED));
         return true;
     }
 }

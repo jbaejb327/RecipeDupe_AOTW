@@ -28,6 +28,8 @@
 
 success-rate: 100.0
 click-window-ms: 600
+dupe-amount: 2 # the number to times/put to the power by.
+mode: multiple
 
 # Past this point is my copyright license.
 

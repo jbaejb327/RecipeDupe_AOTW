@@ -7,12 +7,16 @@ public final class RecipeDupe extends JavaPlugin {
     private boolean dupeEnabled = true;
     private double successRate = 100.0;
     private int clickWindowMs = 600;
+    private int dupeAmount = 2;
+    private String mode = "multiple"; // allowed: "multiple" or "exponent"
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         successRate = getConfig().getDouble("success-rate", 100.0);
         clickWindowMs = getConfig().getInt("click-window-ms", 600);
+    dupeAmount = getConfig().getInt("dupe-amount", 2);
+    mode = getConfig().getString("mode", "multiple");
         getServer().getPluginManager().registerEvents(new DupeListener(this), this);
         if (getCommand("recipedupe") != null) {
             getCommand("recipedupe").setExecutor(new DupeCommand(this));
@@ -46,5 +50,30 @@ public final class RecipeDupe extends JavaPlugin {
     public void reloadPluginConfig() {
         reloadConfig();
         successRate = getConfig().getDouble("success-rate", 100.0);
+        clickWindowMs = getConfig().getInt("click-window-ms", 600);
+        dupeAmount = getConfig().getInt("dupe-amount", 2);
+        mode = getConfig().getString("mode", "multiple");
+    }
+
+    public int getDupeAmount() {
+        return dupeAmount;
+    }
+
+    public String getMode() {
+        return mode != null ? mode.toLowerCase() : "multiple";
+    }
+
+    /**
+     * Set the plugin mode. Valid values are "multiple" and "exponent".
+     * Returns true if the mode was accepted and set, false otherwise.
+     */
+    public boolean setMode(String newMode) {
+        if (newMode == null) return false;
+        String m = newMode.toLowerCase();
+        if (m.equals("multiple") || m.equals("exponent")) {
+            this.mode = m;
+            return true;
+        }
+        return false;
     }
 }

@@ -20,5 +20,6 @@ Using the Gradle wrapper (recommended if added):
 ```
 
 The .jar will be in `build/libs/` if the build works.
+
 # License
 License is in `resources/config.yml`
